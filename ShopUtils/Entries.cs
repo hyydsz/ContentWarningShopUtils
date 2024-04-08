@@ -53,8 +53,7 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterAll(Assembly assembly)
         {
-            Type[] types = assembly.GetTypes();
-            foreach (Type type in types)
+            foreach (Type type in GetTypesFromAssembly(assembly))
             {
                 if (type.IsSubclassOf(typeof(ItemDataEntry)))
                 {

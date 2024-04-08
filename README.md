@@ -55,3 +55,17 @@ void Awake() {
     Entries.RegisterEntry(typeof(ExampleEntry));
 }
 ```
+
+### Debug
+- Set all item prices to 0
+```csharp
+void Awake() {
+    Shops.DebugMode();
+}
+```
+
+## Fork & Clone
+Need Following DLL:
+- Assembly-CSharp-nstrip.dll
+- Zorro.Core.Runtime.dll
+- Sirenix.Serialization.dll

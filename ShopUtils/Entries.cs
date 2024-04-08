@@ -60,9 +60,9 @@ namespace ShopUtils
                 {
                     if (!registerEntries.Contains(type))
                     {
-                        UtilsLogger.LogInfo($"Found ItemDataEntry: {type.Name}");
-
                         registerEntries.Add(type);
+
+                        UtilsLogger.LogInfo($"Found ItemDataEntry: {type.Name}, Id: {registerEntries.Count + ItemInstanceDataPatch.EntryCount}");
                     }
                 }
             }

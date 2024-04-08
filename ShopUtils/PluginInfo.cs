@@ -6,7 +6,7 @@ namespace ShopUtils
     [BepInPlugin(ModGUID, ModName, ModVersion)]
     public class PluginInfo : BaseUnityPlugin
     {
-        public const string ModGUID = "WaterEgg-ShopUtils";
+        public const string ModGUID = "hyydsz-ShopUtils";
         public const string ModName = "ShopUtils";
         public const string ModVersion = "1.0.0";
 

@@ -1,5 +1,7 @@
 # ShopUtils
 
+Before use, you need to download [ContentWarningUnityTemplate](https://github.com/hyydsz/ContentWarningUnityTemplate)
+
 ## Support API
 - Items API
 - ItemDataEntry API

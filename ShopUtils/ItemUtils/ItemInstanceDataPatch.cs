@@ -7,7 +7,7 @@ namespace Boombox.ItemUtils
     [HarmonyPatch(typeof(ItemInstanceData))]
     public class ItemInstanceDataPatch
     {
-        private static int EntryCount = 9;
+        public static int EntryCount = 9;
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(ItemInstanceData.GetEntryIdentifier))]

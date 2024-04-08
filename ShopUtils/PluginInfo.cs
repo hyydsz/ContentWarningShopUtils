@@ -15,6 +15,7 @@ namespace ShopUtils
         void Awake()
         {
             UtilsLogger.InitLogger(Logger);
+            Entries.InitEntryCount();
 
             harmony.PatchAll();
         }

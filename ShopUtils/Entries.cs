@@ -1,4 +1,5 @@
-﻿using ShopUtils.ItemUtils;
+﻿using Boombox.ItemUtils;
+using ShopUtils.ItemUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +74,21 @@ namespace ShopUtils
         public static void RegisterAll()
         {
             RegisterAll(Assembly.GetCallingAssembly());
+        }
+
+        public static void InitEntryCount()
+        {
+            /* Begin 0 Increase */
+            ItemInstanceDataPatch.EntryCount = -1;
+
+            Type[] types = GetTypesFromAssembly(Assembly.GetAssembly(typeof(ItemDataEntry)));
+            foreach (Type type in types)
+            {
+                if (type.IsSubclassOf(typeof(ItemDataEntry)))
+                {
+                    ItemInstanceDataPatch.EntryCount += 1;
+                }
+            }
         }
     }
 }

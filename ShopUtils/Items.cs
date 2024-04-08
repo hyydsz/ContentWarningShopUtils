@@ -87,15 +87,9 @@ namespace ShopUtils
             registerItems.ForEach(item =>
             {
                 item.id = GetMaxItemID();
-                item.PersistentID = Guid.NewGuid();
 
-                UtilsLogger.LogInfo($"Item: {item.displayName}, ItemId: {item.id}");
+                UtilsLogger.LogInfo($"Item: {item.displayName}, ItemId: {item.id}, Guid: {item.persistentID}");
             });
-        }
-
-        public static void ItemsForeach(Action<Item> action)
-        {
-            registerItems.ForEach(action);
         }
 
         private static byte GetMaxItemID()

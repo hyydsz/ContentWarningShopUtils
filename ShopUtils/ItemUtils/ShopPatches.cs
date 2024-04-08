@@ -14,8 +14,7 @@ namespace Boombox.ItemUtils
         {
             UtilsLogger.LogInfo("Shop Begin Init");
 
-            Items.InitAllItems();
-            Items.ItemsForeach(item =>
+            Items.registerItems.ForEach(item =>
             {
                 int price = item.price;
 

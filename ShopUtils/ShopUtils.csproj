@@ -77,6 +77,7 @@
     <Compile Include="ItemUtils\ItemInstanceDataPatch.cs" />
     <Compile Include="ItemUtils\ShopPatches.cs" />
     <Compile Include="ItemUtils\ShopUtilsException.cs" />
+    <Compile Include="ItemUtils\SurfaceNetworkHandlerPatch.cs" />
     <Compile Include="Shops.cs" />
     <Compile Include="UtilsLogger.cs" />
     <Compile Include="PluginInfo.cs" />

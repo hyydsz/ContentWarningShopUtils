@@ -46,6 +46,14 @@ namespace ShopUtils
         ///<summary>
         ///Add Item Into Shop
         /// </summary>
+        public static void RegisterItem(Item item, int price)
+        {
+            RegisterItem(item, ShopItemCategory.Invalid, price);
+        }
+
+        ///<summary>
+        ///Add Item Into Shop
+        /// </summary>
         public static void RegisterItem(Item item)
         {
             RegisterItem(item, ShopItemCategory.Invalid, -1);

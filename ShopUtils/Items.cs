@@ -14,7 +14,7 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterItem(Item item, ShopItemCategory category, int price)
         {
-            if (price != -1)
+            if (price >= 0)
             {
                 item.price = price;
             }
@@ -28,6 +28,14 @@ namespace ShopUtils
             {
                 throw new ShopUtilsException(
                     $"Error Category Invalid \n" +
+                    $"Items Name: {item.displayName} \n"
+                    );
+            }
+
+            if (item.price < 0)
+            {
+                throw new ShopUtilsException(
+                    $"Error Item Price \n" +
                     $"Items Name: {item.displayName} \n"
                     );
             }

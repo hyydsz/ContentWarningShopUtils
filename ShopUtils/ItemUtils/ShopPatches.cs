@@ -19,7 +19,10 @@ namespace Boombox.ItemUtils
             {
                 int price = item.price;
 
-                item.price = 0;
+                if (DebugMode) {
+                    item.price = 0;
+                }
+
                 ShopItem shopItem = new ShopItem(item);
                 item.price = price;
 

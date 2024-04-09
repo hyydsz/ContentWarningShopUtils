@@ -8,7 +8,7 @@ namespace ShopUtils
     {
         public const string ModGUID = "hyydsz-ShopUtils";
         public const string ModName = "ShopUtils";
-        public const string ModVersion = "1.0.1";
+        public const string ModVersion = "1.0.2";
 
         private Harmony harmony = new Harmony(ModGUID);
 

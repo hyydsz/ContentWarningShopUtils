@@ -79,6 +79,6 @@ void Awake() {
 
 ## Fork & Clone
 Need Following DLL:
-- Assembly-CSharp-nstrip.dll
+- Assembly-CSharp-nstrip.dll [NStrip](https://github.com/bbepis/NStrip?tab=readme-ov-file)
 - Zorro.Core.Runtime.dll
 - Sirenix.Serialization.dll

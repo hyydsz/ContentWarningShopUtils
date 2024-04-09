@@ -35,12 +35,10 @@ namespace ShopUtils
 
         ///<summary>
         ///Call this When you Start Game 
-        ///Set All Items Price to 0
+        ///Give you 99999 Money
         /// </summary>
         public static void DebugMode()
         {
-            UtilsLogger.LogInfo("Debug Mode");
-
             ShopPatches.DebugMode = true;
         }
     }

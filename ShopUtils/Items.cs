@@ -10,9 +10,9 @@ namespace ShopUtils
         public static List<Item> registerItems = new List<Item>();
 
         ///<summary>
-        ///Add Item Into Shop
+        ///Add Shop Item
         /// </summary>
-        public static void RegisterItem(Item item, ShopItemCategory category, int price)
+        public static void RegisterShopItem(Item item, ShopItemCategory category = ShopItemCategory.Invalid, int price = -1)
         {
             if (price >= 0)
             {
@@ -40,31 +40,30 @@ namespace ShopUtils
                     );
             }
 
-            registerItems.Add(item);
+            item.purchasable = true;
+
+            if (!registerItems.Contains(item)) {
+                registerItems.Add(item);
+            }
         }
 
         ///<summary>
-        ///Add Item Into Shop
+        ///Add Spawnable Item
         /// </summary>
-        public static void RegisterItem(Item item, ShopItemCategory category)
+        public static void RegisterSpawnableItem(Item item, Item.RARITY Rarity = Item.RARITY.common, int BudgetCost = 1)
         {
-            RegisterItem(item, category, -1);
-        }
+            item.toolSpawnRarity = Rarity;
+            item.toolBudgetCost = BudgetCost;
 
-        ///<summary>
-        ///Add Item Into Shop
-        /// </summary>
-        public static void RegisterItem(Item item, int price)
-        {
-            RegisterItem(item, ShopItemCategory.Invalid, price);
-        }
+            item.spawnable = true;
 
-        ///<summary>
-        ///Add Item Into Shop
-        /// </summary>
-        public static void RegisterItem(Item item)
-        {
-            RegisterItem(item, ShopItemCategory.Invalid, -1);
+            if (item.itemType != Item.ItemType.Tool) {
+                UtilsLogger.LogWarning($"Item: {item.displayName} is not tool item type. maybe can't spawn in game");
+            }
+
+            if (!registerItems.Contains(item)) {
+                registerItems.Add(item);
+            }
         }
 
         ///<summary>
@@ -75,7 +74,6 @@ namespace ShopUtils
             if (registerItems.Contains(item)) {
                 registerItems.Remove(item);
             }
-
         }
 
         ///<summary>
@@ -88,7 +86,13 @@ namespace ShopUtils
             {
                 item.id = GetMaxItemID();
 
-                UtilsLogger.LogInfo($"Item: {item.displayName}, ItemId: {item.id}, Guid: {item.persistentID}");
+                UtilsLogger.LogInfo(
+                    $"Item: {item.displayName}, " +
+                    $"Buyable: {item.purchasable}, " +
+                    $"Spawnable: {item.spawnable}, " +
+                    $"ItemId: {item.id}, " +
+                    $"Guid: {item.persistentID}"
+                    );
             });
         }
 

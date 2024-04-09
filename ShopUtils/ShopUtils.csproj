@@ -76,6 +76,7 @@
     <Compile Include="Items.cs" />
     <Compile Include="ItemUtils\ItemDatabasePatch.cs" />
     <Compile Include="ItemUtils\ItemInstanceDataPatch.cs" />
+    <Compile Include="ItemUtils\RoundSpawnerToolsPatch.cs" />
     <Compile Include="ItemUtils\ShopPatches.cs" />
     <Compile Include="ItemUtils\ShopUtilsException.cs" />
     <Compile Include="ItemUtils\SurfaceNetworkHandlerPatch.cs" />

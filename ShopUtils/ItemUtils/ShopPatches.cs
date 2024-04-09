@@ -14,16 +14,18 @@ namespace Boombox.ItemUtils
         {
             UtilsLogger.LogInfo("Shop Begin Init");
 
+            if (DebugMode) {
+                UtilsLogger.LogInfo("Debug Mode");
+
+                __instance.m_RoomStats.AddMoney(99999);
+            }
+
             Items.registerItems.ForEach(item =>
             {
-                int price = item.price;
-
-                if (DebugMode) {
-                    item.price = 0;
-                }
+                if (!item.purchasable)
+                    return;
 
                 ShopItem shopItem = new ShopItem(item);
-                item.price = price;
 
                 __instance.m_ItemsForSaleDictionary.Add(shopItem.ItemID, shopItem);
 

@@ -19,7 +19,17 @@ public class Example : BaseUnityPlugin {
 ### Items API
 ```csharp
 void Awake() {
-    Items.RegisterItem(Item: item);
+    // RegisterShopItem(Item item, ShopItemCategory category = ShopItemCategory.Invalid, int price = -1)
+    Items.RegisterShopItem(Item: item);
+}
+```
+
+### ItemSpawn API
+If you want your item to random in the map: 
+```csharp
+void Awake() {
+    // RegisterSpawnableItem(Item item, Item.RARITY Rarity = Item.RARITY.common, int BudgetCost = 1)
+    Items.RegisterSpawnableItem(Item: item);
 }
 ```
 
@@ -59,7 +69,7 @@ void Awake() {
 ```
 
 ### Debug
-- Set all item prices to 0
+- Set the money to 99999
 ```csharp
 void Awake() {
     Shops.DebugMode();

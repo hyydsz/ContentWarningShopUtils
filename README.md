@@ -4,6 +4,7 @@ Before use, you need to download [ContentWarningUnityTemplate](https://github.co
 
 ## Support API
 - Items API
+- ItemSpawn API
 - ItemDataEntry API
 
 ## How To Use

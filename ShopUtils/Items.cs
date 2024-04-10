@@ -79,7 +79,7 @@ namespace ShopUtils
         ///<summary>
         ///Init All Items Id and Guid
         /// </summary>
-        public static void InitAllItems()
+        internal static void InitAllItems()
         {
             registerItems.ForEach(item => item.id = 0);
             registerItems.ForEach(item =>

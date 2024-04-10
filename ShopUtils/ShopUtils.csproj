@@ -46,6 +46,10 @@
       <HintPath>..\..\..\BepInEx\core\BepInEx.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="com.rlabrecque.steamworks.net">
+      <HintPath>..\..\..\BepInEx\com.rlabrecque.steamworks.net.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>..\..\..\BepInEx\Sirenix.Serialization.dll</HintPath>
       <Private>False</Private>

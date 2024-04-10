@@ -76,7 +76,7 @@ namespace ShopUtils
             RegisterAll(Assembly.GetCallingAssembly());
         }
 
-        public static void InitEntryCount()
+        internal static void InitEntryCount()
         {
             /* Begin 0 Increase */
             ItemInstanceDataPatch.EntryCount = -1;

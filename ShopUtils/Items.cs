@@ -8,6 +8,7 @@ namespace ShopUtils
     public class Items
     {
         internal static List<Item> registerItems = new List<Item>();
+        internal static List<Item> registerSpawnableArtifactItem = new List<Item>();
 
         ///<summary>
         ///Add Shop Item
@@ -48,37 +49,16 @@ namespace ShopUtils
         }
 
         ///<summary>
-        ///Add Spawnable Tool Item
-        ///The latest update in the game removed spawn tool itemss
-        /// </summary>
-        public static void RegisterSpawnableToolItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
-        {
-            // Tools
-            item.toolSpawnRarity = Rarity;
-            item.toolBudgetCost = BudgetCost;
-
-            item.spawnable = true;
-            item.itemType = Item.ItemType.Tool;
-
-            if (!registerItems.Contains(item)) {
-                registerItems.Add(item);
-            }
-        }
-
-        ///<summary>
         ///Add Spawnable Artifact Item
         /// </summary>
-        public static void RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
+        public static void RegisterSpawnableItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {
             // Artifact
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
 
-            item.spawnable = true;
-            item.itemType = Item.ItemType.Artifact;
-
-            if (!registerItems.Contains(item)) {
-                registerItems.Add(item);
+            if (!registerSpawnableArtifactItem.Contains(item)) {
+                registerSpawnableArtifactItem.Add(item);
             }
         }
 

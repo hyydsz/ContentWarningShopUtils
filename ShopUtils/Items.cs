@@ -49,7 +49,7 @@ namespace ShopUtils
         }
 
         ///<summary>
-        ///Add Spawnable Artifact Item
+        ///Add Spawnable Item
         /// </summary>
         public static void RegisterSpawnableItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {
@@ -59,6 +59,16 @@ namespace ShopUtils
 
             if (!registerSpawnableItem.Contains(item)) {
                 registerSpawnableItem.Add(item);
+            }
+        }
+
+        ///<summary>
+        ///Remove Spawnable Item
+        /// </summary>
+        public static void RemoveSpawnableItem(Item item)
+        {
+            if (registerSpawnableItem.Contains(item)) {
+                registerSpawnableItem.Remove(item);
             }
         }
 

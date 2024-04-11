@@ -8,7 +8,7 @@ namespace ShopUtils
     public class Items
     {
         internal static List<Item> registerItems = new List<Item>();
-        internal static List<Item> registerSpawnableArtifactItem = new List<Item>();
+        internal static List<Item> registerSpawnableItem = new List<Item>();
 
         ///<summary>
         ///Add Shop Item
@@ -57,8 +57,8 @@ namespace ShopUtils
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
 
-            if (!registerSpawnableArtifactItem.Contains(item)) {
-                registerSpawnableArtifactItem.Add(item);
+            if (!registerSpawnableItem.Contains(item)) {
+                registerSpawnableItem.Add(item);
             }
         }
 

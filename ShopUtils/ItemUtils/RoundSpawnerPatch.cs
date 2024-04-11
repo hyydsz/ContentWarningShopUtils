@@ -11,7 +11,7 @@ namespace ShopUtils.ItemUtils
         public static void SpawnRound(RoundArtifactSpawner __instance)
         {
             __instance.possibleSpawns = __instance.possibleSpawns
-                .Concat(Items.registerSpawnableArtifactItem)
+                .Concat(Items.registerSpawnableItem)
                 .ToArray();
         }
     }

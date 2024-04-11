@@ -34,7 +34,6 @@ void Awake() {
     // RegisterSpawnableItem(Item item, Item.RARITY Rarity = Item.RARITY.common, int BudgetCost = 1)
     Items.RegisterSpawnableItem(Item: item);
 
-    // Beta
     // RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
     Items.RegisterSpawnableArtifactItem(Item: item);
 }

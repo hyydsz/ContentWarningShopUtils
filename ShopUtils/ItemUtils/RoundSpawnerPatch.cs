@@ -23,7 +23,7 @@ namespace ShopUtils.ItemUtils
     [HarmonyPatch(typeof(RoundArtifactSpawner))]
     internal class RoundArtifactSpawnerPatch
     {
-        [HarmonyPostfix]
+        [HarmonyPrefix]
         [HarmonyPatch(nameof(RoundArtifactSpawner.SpawnRound))]
         public static void SpawnRound(RoundArtifactSpawner __instance)
         {

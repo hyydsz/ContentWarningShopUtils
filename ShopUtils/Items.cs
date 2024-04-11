@@ -66,7 +66,7 @@ namespace ShopUtils
         }
 
         ///<summary>
-        ///Add Spawnable Item
+        ///Add Spawnable Artifact Item
         /// </summary>
         public static void RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {

@@ -48,7 +48,7 @@ namespace ShopUtils
         }
 
         ///<summary>
-        ///Add Spawnable Item
+        ///Add Spawnable Tool Item
         /// </summary>
         public static void RegisterSpawnableItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
         {
@@ -56,12 +56,26 @@ namespace ShopUtils
             item.toolBudgetCost = BudgetCost;
 
             item.spawnable = true;
-
-            if (item.itemType != Item.ItemType.Tool) {
-                UtilsLogger.LogWarning($"Item: {item.displayName} is not tool item type. maybe can't spawn in game");
-            }
+            item.itemType = Item.ItemType.Tool;
 
             if (!registerItems.Contains(item)) {
+                registerItems.Add(item);
+            }
+        }
+
+        ///<summary>
+        ///Add Spawnable Item
+        /// </summary>
+        public static void RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
+        {
+            item.rarity = Rarity;
+            item.budgetCost = BudgetCost;
+
+            item.spawnable = true;
+            item.itemType = Item.ItemType.Artifact;
+
+            if (!registerItems.Contains(item))
+            {
                 registerItems.Add(item);
             }
         }

@@ -27,12 +27,11 @@ namespace ShopUtils.Language
                             {
                                 __instance.Tooltips.Add(new ItemKeyTooltip(s));
                             }
-
-                            __result = __instance.Tooltips;
-
-                            return false;
                         }
                     }
+
+                    __result = __instance.Tooltips;
+                    return false;
                 }
             }
 
@@ -54,6 +53,9 @@ namespace ShopUtils.Language
                         return false;
                     }
                 }
+
+                __result = __instance.displayName;
+                return false;
             }
 
             return true;

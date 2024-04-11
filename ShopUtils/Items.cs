@@ -49,8 +49,9 @@ namespace ShopUtils
 
         ///<summary>
         ///Add Spawnable Tool Item
+        ///The latest update in the game removed spawn tool itemss
         /// </summary>
-        public static void RegisterSpawnableItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
+        public static void RegisterSpawnableToolItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
         {
             // Tools
             item.toolSpawnRarity = Rarity;
@@ -70,7 +71,6 @@ namespace ShopUtils
         public static void RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {
             // Artifact
-
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
 

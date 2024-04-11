@@ -25,7 +25,7 @@ namespace Boombox.ItemUtils
                 if (!item.purchasable)
                     return;
 
-                ShopItem shopItem = new ShopItem(item);
+                ShopItem shopItem = Languages.CreateShopItemWithLanguage(item);
 
                 __instance.m_ItemsForSaleDictionary.Add(shopItem.ItemID, shopItem);
 

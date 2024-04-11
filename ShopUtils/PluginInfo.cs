@@ -1,5 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
+using ShopUtils.Network;
 
 namespace ShopUtils
 {
@@ -8,7 +9,7 @@ namespace ShopUtils
     {
         public const string ModGUID = "hyydsz-ShopUtils";
         public const string ModName = "ShopUtils";
-        public const string ModVersion = "1.0.2";
+        public const string ModVersion = "1.0.3";
 
         private Harmony harmony = new Harmony(ModGUID);
 
@@ -16,6 +17,7 @@ namespace ShopUtils
         {
             UtilsLogger.InitLogger(Logger);
             Entries.InitEntryCount();
+            Networks.InitNetwork();
 
             harmony.PatchAll();
         }

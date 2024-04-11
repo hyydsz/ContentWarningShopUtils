@@ -7,7 +7,7 @@ namespace ShopUtils
 {
     public class Items
     {
-        public static List<Item> registerItems = new List<Item>();
+        internal static List<Item> registerItems = new List<Item>();
 
         ///<summary>
         ///Add Shop Item
@@ -50,7 +50,7 @@ namespace ShopUtils
         ///<summary>
         ///Add Spawnable Item
         /// </summary>
-        public static void RegisterSpawnableItem(Item item, Item.RARITY Rarity = Item.RARITY.common, int BudgetCost = 1)
+        public static void RegisterSpawnableItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
         {
             item.toolSpawnRarity = Rarity;
             item.toolBudgetCost = BudgetCost;

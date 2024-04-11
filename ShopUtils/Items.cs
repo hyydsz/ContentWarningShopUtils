@@ -52,6 +52,7 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterSpawnableItem(Item item, RARITY Rarity = RARITY.common, int BudgetCost = 1)
         {
+            // Tools
             item.toolSpawnRarity = Rarity;
             item.toolBudgetCost = BudgetCost;
 
@@ -68,14 +69,15 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {
+            // Artifact
+
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
 
             item.spawnable = true;
             item.itemType = Item.ItemType.Artifact;
 
-            if (!registerItems.Contains(item))
-            {
+            if (!registerItems.Contains(item)) {
                 registerItems.Add(item);
             }
         }

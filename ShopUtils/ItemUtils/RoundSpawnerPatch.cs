@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace ShopUtils.ItemUtils
@@ -28,17 +27,9 @@ namespace ShopUtils.ItemUtils
         [HarmonyPatch(nameof(RoundArtifactSpawner.SpawnRound))]
         public static void SpawnRound(RoundArtifactSpawner __instance)
         {
-            List<Item> items = new List<Item>();
-
-            foreach (Item item in Items.registerItems)
-            {
-                if (item.itemType == Item.ItemType.Artifact && item.spawnable)
-                {
-                    items.Add(item);
-                }
-            }
-
-            __instance.possibleSpawns = __instance.possibleSpawns.Concat(items).ToArray();
+            __instance.possibleSpawns = __instance.possibleSpawns
+                .Concat(Items.registerItems.Where(item => item.itemType == Item.ItemType.Artifact && item.spawnable))
+                .ToArray();
         }
     }
 }

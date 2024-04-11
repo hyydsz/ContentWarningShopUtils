@@ -31,11 +31,8 @@ void Awake() {
 If you want your item to random in the map: 
 ```csharp
 void Awake() {
-    // RegisterSpawnableItem(Item item, Item.RARITY Rarity = Item.RARITY.common, int BudgetCost = 1)
+    // RegisterSpawnableItem(Item item, float Rarity = 1, int BudgetCost = 1)
     Items.RegisterSpawnableItem(Item: item);
-
-    // RegisterSpawnableArtifactItem(Item item, float Rarity = 1, int BudgetCost = 1)
-    Items.RegisterSpawnableArtifactItem(Item: item);
 }
 ```
 

@@ -108,7 +108,7 @@ void Awake() {
     // Everyone can synchronize price
     Networks.RegisterItemPrice(Item: item);
 
-    Networks.ObLobbyCreated += () => {
+    Networks.OnLobbyCreated += () => {
         // If you are host. you can set lobby data here
         Networks.SetLobbyData(string: key, string: data)
     };

@@ -1,32 +1,32 @@
 ﻿using HarmonyLib;
+using System;
 using System.Collections.Generic;
-using UnityEngine.Localization.Settings;
+using System.Reflection;
+using System.Reflection.Emit;
+using UnityEngine;
 
 namespace ShopUtils.Language
 {
     [HarmonyPatch(typeof(Item))]
-    public class LanguagePatch
+    internal static class LanguagePatch
     {
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Item.GetTootipData))]
-        public static bool GetTootipData(Item __instance, ref IEnumerable<IHaveUIData> __result)
+        private static bool GetTootipData(Item __instance, ref IEnumerable<IHaveUIData> __result)
         {
             if (Items.registerItems.Contains(__instance))
             {
                 if (__instance.Tooltips.Count > 0)
                 {
                     string text = __instance.name.Trim().Replace(" ", "") + "_ToolTips";
-                    if (Languages.languages.TryGetValue(text, out var language))
+                    if (Languages.TryGetLanguage(text, out string language))
                     {
-                        if (language.ContainsKey(LocalizationSettings.SelectedLocale))
-                        {
-                            string[] array = language[LocalizationSettings.SelectedLocale].Split(';');
+                        string[] array = language.Split(';');
 
-                            __instance.Tooltips = new List<ItemKeyTooltip>();
-                            foreach (string s in array)
-                            {
-                                __instance.Tooltips.Add(new ItemKeyTooltip(s));
-                            }
+                        __instance.Tooltips = new List<ItemKeyTooltip>();
+                        foreach (string s in array)
+                        {
+                            __instance.Tooltips.Add(new ItemKeyTooltip(s));
                         }
                     }
 
@@ -40,18 +40,15 @@ namespace ShopUtils.Language
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Item.GetLocalizedDisplayName))]
-        public static bool GetLocalizedDisplayName(Item __instance, ref string __result)
+        private static bool GetLocalizedDisplayName(Item __instance, ref string __result)
         {
             if (Items.registerItems.Contains(__instance))
             {
                 string text = __instance.name.Trim().Replace(" ", "");
-                if (Languages.languages.TryGetValue(text, out var language))
+                if (Languages.TryGetLanguage(text, out string language))
                 {
-                    if (language.ContainsKey(LocalizationSettings.SelectedLocale))
-                    {
-                        __result = language[LocalizationSettings.SelectedLocale];
-                        return false;
-                    }
+                    __result = language;
+                    return false;
                 }
 
                 __result = __instance.displayName;
@@ -59,6 +56,32 @@ namespace ShopUtils.Language
             }
 
             return true;
+        }
+    }
+
+    [HarmonyPatch(typeof(ShopItem))]
+    internal static class ShopItemPatches
+    {
+        [HarmonyTranspiler]
+        [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(Item) })]
+        private static IEnumerable<CodeInstruction> ShopItem(IEnumerable<CodeInstruction> instructions)
+        {
+            FieldInfo display = AccessTools.Field(typeof(Item), nameof(Item.displayName));
+            MethodInfo method = AccessTools.Method(typeof(Item), nameof(Item.GetLocalizedDisplayName));
+
+            MethodInfo LogError = AccessTools.Method(typeof(Debug), nameof(Debug.LogError), new Type[] { typeof(object) });
+
+            return new CodeMatcher(instructions)
+
+                .SearchForward(code => code.opcode == OpCodes.Ldfld && (FieldInfo) code.operand == display)
+                .ThrowIfInvalid("Couldn't find displayName")
+                .SetInstructionAndAdvance(new CodeInstruction(OpCodes.Call, method))
+
+                .SearchForward(code => code.opcode == OpCodes.Ldstr)
+                .ThrowIfInvalid("Couldn't find LogError")
+                .RemoveInstructions(5)
+
+                .InstructionEnumeration();
         }
     }
 }

@@ -51,10 +51,6 @@
       <HintPath>..\..\..\BepInEx\com.rlabrecque.steamworks.net.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PhotonUnityNetworking">
-      <HintPath>..\..\..\BepInEx\PhotonUnityNetworking.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Sirenix.Serialization">
       <HintPath>..\..\..\BepInEx\Sirenix.Serialization.dll</HintPath>
       <Private>False</Private>
@@ -91,13 +87,12 @@
     <Compile Include="ItemUtils\ItemInstanceDataPatch.cs" />
     <Compile Include="ItemUtils\RoundSpawnerPatch.cs" />
     <Compile Include="ItemUtils\ShopPatches.cs" />
-    <Compile Include="ItemUtils\UtilsException.cs" />
-    <Compile Include="ItemUtils\SurfaceNetworkHandlerPatch.cs" />
+    <Compile Include="ItemUtils\SurfaceNetworkHandlerPatches.cs" />
     <Compile Include="Languages.cs" />
+    <Compile Include="Language\LanguageEnum.cs" />
     <Compile Include="Language\LanguagePatch.cs" />
     <Compile Include="Network\Networks.cs" />
     <Compile Include="Network\SteamLobbyHandlerPatches.cs" />
-    <Compile Include="Shops.cs" />
     <Compile Include="UtilsLogger.cs" />
     <Compile Include="PluginInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

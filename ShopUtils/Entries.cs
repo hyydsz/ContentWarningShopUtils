@@ -1,5 +1,4 @@
 ﻿using Boombox.ItemUtils;
-using ShopUtils.ItemUtils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +6,9 @@ using System.Reflection;
 
 namespace ShopUtils
 {
-    public class Entries
+    public static class Entries
     {
-        public static List<Type> registerEntries = new List<Type>();
+        internal static List<Type> registerEntries = new List<Type>();
 
         ///<summary>
         ///Add ItemDataEntry Type
@@ -18,7 +17,7 @@ namespace ShopUtils
         {
             if (!type.IsSubclassOf(typeof(ItemDataEntry)))
             {
-                throw new ShopUtilsException($"Unknown Item Data Entry: {type.Name}");
+                throw new Exception($"Unknown Item Data Entry: {type.Name}");
             }
 
             if (!registerEntries.Contains(type)) {
@@ -36,7 +35,7 @@ namespace ShopUtils
             }
         }
 
-        public static Type[] GetTypesFromAssembly(Assembly assembly)
+        private static Type[] GetTypesFromAssembly(Assembly assembly)
         {
             try
             {

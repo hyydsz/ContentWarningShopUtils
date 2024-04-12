@@ -1,11 +1,10 @@
-﻿using ShopUtils.ItemUtils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Zorro.Core;
 
 namespace ShopUtils
 {
-    public class Items
+    public static class Items
     {
         internal static List<Item> registerItems = new List<Item>();
         internal static List<Item> registerSpawnableItem = new List<Item>();
@@ -15,6 +14,10 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterShopItem(Item item, ShopItemCategory category = ShopItemCategory.Invalid, int price = -1)
         {
+            if (item == null) {
+                throw new ShopUtilsException("Item is null");
+            }
+
             if (price >= 0)
             {
                 item.price = price;
@@ -53,6 +56,10 @@ namespace ShopUtils
         /// </summary>
         public static void RegisterSpawnableItem(Item item, float Rarity = 1, int BudgetCost = 1)
         {
+            if (item == null) {
+                throw new ShopUtilsException("Item is null");
+            }
+
             // Artifact
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
@@ -65,7 +72,7 @@ namespace ShopUtils
         ///<summary>
         ///Remove Spawnable Item
         /// </summary>
-        public static void RemoveSpawnableItem(Item item)
+        public static void UnRegisterSpawnableItem(Item item)
         {
             if (registerSpawnableItem.Contains(item)) {
                 registerSpawnableItem.Remove(item);

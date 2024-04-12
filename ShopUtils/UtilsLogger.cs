@@ -1,12 +1,13 @@
 ﻿using BepInEx.Logging;
+using System;
 
 namespace ShopUtils
 {
-    public class UtilsLogger
+    public static class UtilsLogger
     {
         private static ManualLogSource logger;
 
-        public static void InitLogger(ManualLogSource souce)
+        internal static void InitLogger(ManualLogSource souce)
         {
             logger = souce;
         }
@@ -25,5 +26,10 @@ namespace ShopUtils
         {
             logger.LogWarning(message);
         }
+    }
+
+    public class ShopUtilsException : Exception
+    {
+        public ShopUtilsException(string message) : base(message) { }
     }
 }

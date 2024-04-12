@@ -5,13 +5,13 @@ using System;
 namespace Boombox.ItemUtils
 {
     [HarmonyPatch(typeof(ItemInstanceData))]
-    public class ItemInstanceDataPatch
+    internal static class ItemInstanceDataPatch
     {
-        public static int EntryCount = 9;
+        internal static int EntryCount;
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(ItemInstanceData.GetEntryIdentifier))]
-        public static bool GetEntryIdentifier(ref byte __result, Type type)
+        private static bool GetEntryIdentifier(ref byte __result, Type type)
         {
             if (!Entries.registerEntries.Contains(type)) {
                 return true;
@@ -33,7 +33,7 @@ namespace Boombox.ItemUtils
 
         [HarmonyPrefix]
         [HarmonyPatch(nameof(ItemInstanceData.GetEntryType))]
-        public static bool GetEntryType(ref ItemDataEntry __result, byte identifier)
+        private static bool GetEntryType(ref ItemDataEntry __result, byte identifier)
         {
             int begin = EntryCount;
             foreach (Type type1 in Entries.registerEntries)

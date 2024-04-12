@@ -3,11 +3,11 @@
 namespace ShopUtils.Network
 {
     [HarmonyPatch(typeof(SteamLobbyHandler))]
-    public class SteamLobbyHandlerPatches
+    internal static class SteamLobbyHandlerPatches
     {
         [HarmonyPostfix]
         [HarmonyPatch(nameof(SteamLobbyHandler.LeaveLobby))]
-        public static void LeaveLobby()
+        private static void LeaveLobby()
         {
             Networks.m_LobbyLeave();
         }

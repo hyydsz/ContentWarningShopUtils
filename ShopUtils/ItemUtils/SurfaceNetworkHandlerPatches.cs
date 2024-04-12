@@ -3,7 +3,7 @@
 namespace ShopUtils.ItemUtils
 {
     [HarmonyPatch(typeof(SurfaceNetworkHandler))]
-    public class SurfaceNetworkHandlerPatch
+    internal static class SurfaceNetworkHandlerPatches
     {
         [HarmonyPrefix]
         [HarmonyPatch("InitSurface")]

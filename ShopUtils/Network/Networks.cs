@@ -3,7 +3,7 @@ using System;
 
 namespace ShopUtils.Network
 {
-    public class Networks
+    public static class Networks
     {
         // Actually, I was originally planning to use the MyceliumNetwork mods
         // But it is not possible to set keys when creating lobby :(
@@ -63,6 +63,10 @@ namespace ShopUtils.Network
 
         public static void RegisterItemPrice(Item item)
         {
+            if (item == null) {
+                throw new ShopUtilsException("Item is null");
+            }
+
             string itemName = "Item" + "-" + item.persistentID;
 
             OnLobbyCreated += () =>

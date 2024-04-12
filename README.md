@@ -1,12 +1,12 @@
 # ShopUtils
 
-[![Thunderstore Downlaods](https://img.shields.io/badge/DOWNLOADS-15k-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils)
+[![Thunderstore Downlaods](https://img.shields.io/badge/DOWNLOADS-21k-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils)
 [![Thunderstore Version](https://img.shields.io/badge/THUNDERSTORE-V1.0.6-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils/versions)
 
 ## Start
 Before use, you need to download [ContentWarningUnityTemplate](https://github.com/hyydsz/ContentWarningUnityTemplate)
 
-## Support API
+## Features API
 - Items API
 - ItemSpawn API
 - ItemDataEntry API
@@ -97,9 +97,22 @@ void Awake() {
     // If your item name is Test
     // Splite by ';'
 
-    Locale Chinese = Languages.GetLanguage("zh-Hans");
-    Languages.AddLanguage("Test-ToolTips", "[LMB] Use;[RMB] Aim", Chinese); // ToolTips
-    Languages.AddLanguage("Test", "Name is Test", Chinese); // Item DisplayName
+    Locale English = Languages.GetLanguage(LanguageEnum.English);
+    English.AddLanguage("Test-ToolTips", "[LMB] Use;[RMB] Aim"); // ToolTips
+    English.AddLanguage("Test", "Name is Test"); // Item DisplayName
+
+    // or
+
+    Locale English = Languages.GetLanguage(LanguageEnum.English);
+    English.AddLanguage(
+        new LanguageInstance("Test-ToolTips", "[LMB] Use;[RMB] Aim"), // ToolTips
+        new LanguageInstance("Test", "Name is Test"), // Item DisplayName
+    ); 
+
+    // You can get current Language
+    if (Languages.TryGetLanguage("Test", out string language)) {
+
+    }
 }
 ```
 
@@ -124,16 +137,9 @@ void Awake() {
 }
 ```
 
-### Debug
-- Set the money to 99999
-```csharp
-void Awake() {
-    Shops.DebugMode();
-}
-```
-
 ## Fork & Clone
 Need Following DLL:
 - Assembly-CSharp-nstrip.dll [NStrip](https://github.com/bbepis/NStrip?tab=readme-ov-file)
 - Zorro.Core.Runtime.dll
 - Sirenix.Serialization.dll
+- com.rlabrecque.steamworks.net.dll

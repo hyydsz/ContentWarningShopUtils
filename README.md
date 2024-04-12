@@ -3,6 +3,8 @@
 [![Thunderstore Downlaods](https://img.shields.io/badge/DOWNLOADS-21k-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils)
 [![Thunderstore Version](https://img.shields.io/badge/THUNDERSTORE-V1.0.6-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils/versions)
 
+A library for adding new items to ContentWarning
+
 ## Start
 Before use, you need to download [ContentWarningUnityTemplate](https://github.com/hyydsz/ContentWarningUnityTemplate)
 

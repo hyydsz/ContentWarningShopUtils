@@ -83,11 +83,9 @@
   <ItemGroup>
     <Compile Include="Entries.cs" />
     <Compile Include="Items.cs" />
-    <Compile Include="ItemUtils\ItemDatabasePatch.cs" />
+    <Compile Include="ItemUtils\GameHandlerPatches.cs" />
     <Compile Include="ItemUtils\ItemInstanceDataPatch.cs" />
     <Compile Include="ItemUtils\RoundSpawnerPatch.cs" />
-    <Compile Include="ItemUtils\ShopPatches.cs" />
-    <Compile Include="ItemUtils\SurfaceNetworkHandlerPatches.cs" />
     <Compile Include="Languages.cs" />
     <Compile Include="Language\LanguageEnum.cs" />
     <Compile Include="Language\LanguagePatch.cs" />

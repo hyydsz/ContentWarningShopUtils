@@ -7,7 +7,6 @@ namespace ShopUtils
     public static class Items
     {
         internal static List<Item> registerItems = new List<Item>();
-        internal static List<Item> registerSpawnableItem = new List<Item>();
 
         ///<summary>
         ///Add Shop Item
@@ -46,9 +45,7 @@ namespace ShopUtils
 
             item.purchasable = true;
 
-            if (!registerItems.Contains(item)) {
-                registerItems.Add(item);
-            }
+            RegisterItem(item);
         }
 
         ///<summary>
@@ -64,23 +61,13 @@ namespace ShopUtils
             item.rarity = Rarity;
             item.budgetCost = BudgetCost;
 
-            if (!registerSpawnableItem.Contains(item)) {
-                registerSpawnableItem.Add(item);
-            }
+            item.spawnable = true;
+
+            RegisterItem(item);
         }
 
         ///<summary>
         ///Remove Spawnable Item
-        /// </summary>
-        public static void UnRegisterSpawnableItem(Item item)
-        {
-            if (registerSpawnableItem.Contains(item)) {
-                registerSpawnableItem.Remove(item);
-            }
-        }
-
-        ///<summary>
-        ///Remove Item From Shop
         /// </summary>
         public static void UnRegisterItem(Item item)
         {
@@ -89,29 +76,43 @@ namespace ShopUtils
             }
         }
 
-        ///<summary>
-        ///Init All Items Id and Guid
-        /// </summary>
+        internal static void RegisterItem(Item item)
+        {
+            if (!registerItems.Contains(item)) {
+                registerItems.Add(item);
+            }
+        }
+
         internal static void InitAllItems()
         {
             registerItems.ForEach(item => item.id = 0);
-            registerItems.ForEach(item =>
-            {
-                item.id = GetMaxItemID();
 
-                UtilsLogger.LogInfo(
-                    $"Item: {item.displayName}, " +
-                    $"Buyable: {item.purchasable}, " +
-                    $"Spawnable: {item.spawnable}, " +
-                    $"ItemId: {item.id}, " +
-                    $"Guid: {item.persistentID}"
+            foreach (Item item in registerItems)
+            {
+                if (TryGetMaxItemID(out byte id))
+                {
+                    item.id = id;
+
+                    UtilsLogger.LogInfo(
+                        "[" +
+                        $"Item: {item.displayName}, " +
+                        $"ItemId: {item.id}, " +
+                        $"Guid: {item.persistentID}" +
+                        "]"
                     );
-            });
+
+                    continue;
+                }
+
+                UtilsLogger.LogError("Max Item Id Out of range > 255");
+                return;
+            }
         }
 
-        private static byte GetMaxItemID()
+        internal static bool TryGetMaxItemID(out byte itemId)
         {
             int id = 0;
+
             foreach (Item item in SingletonAsset<ItemDatabase>.Instance.Objects)
             {
                 id = Math.Max(item.id, id);
@@ -122,7 +123,13 @@ namespace ShopUtils
                 id = Math.Max(item.id, id);
             }
 
-            return (byte) (id + 1);
+            if (id == byte.MaxValue) {
+                itemId = 0;
+                return false;
+            }
+
+            itemId = (byte) (id + 1);
+            return true;
         }
     }
 }

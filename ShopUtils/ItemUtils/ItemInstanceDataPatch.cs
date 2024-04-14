@@ -20,6 +20,11 @@ namespace Boombox.ItemUtils
             int begin = EntryCount;
             foreach (Type type1 in Entries.registerEntries)
             {
+                if (begin == byte.MaxValue)
+                {
+                    throw new ShopUtilsException("Item Instance Data Out of range > 255");
+                }
+
                 begin += 1;
                 if (type1 == type)
                 {

@@ -1,5 +1,6 @@
 ﻿using Steamworks;
 using System;
+using System.Collections.Generic;
 
 namespace ShopUtils.Network
 {
@@ -76,13 +77,15 @@ namespace ShopUtils.Network
 
             OnLobbyEnter += () =>
             {
-                if (int.TryParse(GetLobbyData(itemName), out int price))
+                try
                 {
-                    item.price = price;
+                    item.price = int.Parse(GetLobbyData(itemName));
                     return;
-                };
-
-                UtilsLogger.LogError($"Sync Item Price Error. Item: {item.displayName}");
+                }
+                catch
+                {
+                    UtilsLogger.LogError($"Sync Item Price Error. Item: {item.displayName}");
+                }
             };
         }
 
@@ -112,6 +115,29 @@ namespace ShopUtils.Network
             }
 
             return SteamMatchmaking.GetLobbyData(steamID, key);
+        }
+
+        public static void SetNetworkSync(Dictionary<string, object> input, Action<Dictionary<string, string>> Action)
+        {
+            OnLobbyCreated += () =>
+            {
+                foreach (var data in input)
+                {
+                    SetLobbyData(data.Key, data.Value);
+                }
+            };
+
+            OnLobbyEnter += () =>
+            {
+                Dictionary<string, string> output = new Dictionary<string, string>();
+
+                foreach (var data in input)
+                {
+                    output.Add(data.Key, GetLobbyData(data.Key));
+                }
+
+                Action.Invoke(output);
+            };
         }
     }
 }

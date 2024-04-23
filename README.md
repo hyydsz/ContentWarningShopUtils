@@ -1,6 +1,6 @@
 # ShopUtils
 
-[![Thunderstore Downlaods](https://img.shields.io/badge/DOWNLOADS-36k-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils)
+[![Thunderstore Downlaods](https://img.shields.io/badge/DOWNLOADS-70k-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils)
 [![Thunderstore Version](https://img.shields.io/badge/THUNDERSTORE-V1.0.8-blue?logo=thunderstore&logoColor=white&style=for-the-badge)](https://thunderstore.io/c/content-warning/p/hyydsz/ShopUtils/versions)
 [![Nuget](https://img.shields.io/badge/NUGET-DOWNLOAD-00ee00?logo=nuget&logoColor=white&style=for-the-badge)](https://www.nuget.org/packages/ShopUtils)
 

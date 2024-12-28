@@ -14,8 +14,7 @@ namespace ShopUtils.ItemUtils
             Items.InitAllItems();
 
             ItemDatabase item = SingletonAsset<ItemDatabase>.Instance;
-            item.Objects = item.Objects
-                .AddRangeToArray(Items.registerItems.Where(i => i.id != 0).ToArray());
+            item.Objects.AddRange(Items.registerItems.Where(i => i.id != 0));
         }
     }
 }

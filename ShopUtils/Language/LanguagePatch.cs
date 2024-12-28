@@ -10,29 +10,54 @@ namespace ShopUtils.Language
     [HarmonyPatch(typeof(Item))]
     internal static class LanguagePatch
     {
+        // ParseTip is an evil local function, found this IL name with ILSpy
+        static MethodInfo ParseTipMethod = typeof(Item).GetMethod("<GetTootipData>g__ParseTip|36_0", BindingFlags.NonPublic | BindingFlags.Static);
+
         [HarmonyPrefix]
         [HarmonyPatch(nameof(Item.GetTootipData))]
         private static bool GetTootipData(Item __instance, ref IEnumerable<IHaveUIData> __result)
         {
-            if (Items.registerItems.Contains(__instance))
+            try
             {
-                if (__instance.Tooltips.Count > 0)
+                if (Items.registerItems.Contains(__instance))
                 {
-                    string text = __instance.name.Trim().Replace(" ", "") + "_ToolTips";
-                    if (Languages.TryGetLanguage(text, out string language))
+
+                    if (__instance.Tooltips.Count > 0)
                     {
-                        string[] array = language.Split(';');
 
-                        __instance.Tooltips = new List<ItemKeyTooltip>();
-                        foreach (string s in array)
+                        string text = __instance.name.Trim().Replace(" ", "") + "_ToolTips";
+
+                        if (Languages.TryGetLanguage(text, out string language))
                         {
-                            __instance.Tooltips.Add(new ItemKeyTooltip(s));
-                        }
-                    }
 
-                    __result = __instance.Tooltips;
-                    return false;
+
+
+                            string[] array = language.Split(';');
+
+                            __instance.Tooltips = new List<ItemKeyTooltip>();
+                            foreach (string s in array)
+                            {
+
+                                object[] parseTipParameters = new object[] { s, /* out IMKbPromptProvider provider */ null, /* out List<ControllerGlyphs.GlyphType> glpyhType */ null };
+                                object result = ParseTipMethod.Invoke(__instance, parseTipParameters);
+
+                                string tooltipText = result as string;
+
+                                IMKbPromptProvider promptProvider = parseTipParameters[1] as IMKbPromptProvider;
+
+                                List<ControllerGlyphs.GlyphType> glyphType = parseTipParameters[2] as List<ControllerGlyphs.GlyphType>;
+
+                                __instance.Tooltips.Add(new ItemKeyTooltip(tooltipText, promptProvider, glyphType));
+                            }
+                        }
+
+                        __result = __instance.Tooltips;
+                        return false;
+                    }
                 }
+            } catch (Exception e)
+            {
+                UtilsLogger.LogError("Failed while getting tooltip data\n" + e.ToString());
             }
 
             return true;

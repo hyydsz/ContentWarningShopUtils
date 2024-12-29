@@ -7,7 +7,7 @@ namespace ShopUtils.ItemUtils
     internal static class RoundArtifactSpawnerPatch
     {
         [HarmonyPrefix]
-        [HarmonyPatch(nameof(RoundArtifactSpawner.SpawnRound))]
+        [HarmonyPatch(typeof(RoundArtifactSpawner), "SpawnRound")]
         private static void SpawnRound(RoundArtifactSpawner __instance)
         {
             __instance.possibleSpawns = __instance.possibleSpawns
